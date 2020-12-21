@@ -7,37 +7,26 @@ int main(void){
 	setlocale(LC_TIME, "Portuguese");
 	char opcao;
 	unsigned short contador = 5, contador_erros;
-	
-
-	printf("%c%c%c%c%c\n", 201, 205, 205, 205, 187);
-	printf("%c   %c\n", 186, 186);
-	printf("%c   %c\n", 186, 186);
-	printf("%c   %c\n", 186, 186);
-	printf("%c   %c\n", 186, 186);
-	printf("%c%c%c%c%c\n", 204, 205, 205, 205, 185);	
-	printf("%c%c%c%c%c\n", 200, 205, 205, 205, 188);
-	
+	struct dados_pessoais funcionario[MAX_FUNC];
 	do{
 		system("CLS");
-		puts("MENU PRINCIPAL - FUCIONARIOS");
+		puts("MENU PRINCIPAL");
 		puts("1 - CONSULTAR");
 		puts("2 - CADASTRAR");
-		puts("3 - ANALISAR");
-		puts("4 - ALTERAR");
-		puts("5 - APAGAR");
+		puts("3 - ALTERAR");
+		puts("4 - APAGAR");
 		puts("0 - SAIR");
 		printf("OPCAO: ");
 		fflush(stdin);
 		opcao = getche();
 		contador_erros = 1;
-		while((opcao > '5') || (isdigit(opcao) == 0)){
+		while((opcao > '4') || (isdigit(opcao) == 0)){
 			if(contador_erros > 3){
 				puts("OPCAO INVALIDA, INFORME UM NUMERO ENTRE 0 E 4!");
 				puts("1 - CONSULTAR");
 				puts("2 - CADASTRAR");
-				puts("3 - ANALISAR");
-				puts("4 - ALTERAR");
-				puts("5 - APAGAR");
+				puts("3 - ALTERAR");
+				puts("4 - APAGAR");
 				puts("0 - SAIR");
 			}
 			printf("OPCAO: ");
@@ -51,32 +40,42 @@ int main(void){
 				break;
 			case '1':
 				menuConsulta();
+				contador = lerArquivo(funcionario);
+				if(contador <= 0){
+					system("CLS");
+					puts("NENHUM FUNCIONARIO ENCONTRADO!");
+					getch();
+					break;
+				}
 				break;
 			case '2':
 				cadastrarFuncionarios();
 				break;
 			case '3':
-				do{
-					analisarCadastros("MENU");
-					printf("\nNOVA ANALISE?\n(s para sim) ");
-					fflush(stdin);
-					opcao = getche();
-				}while(opcao == 's' || opcao == 'S');
-					
-				
-					
+				contador = lerArquivo(funcionario);
+				if(contador <= 0){
+					system("CLS");
+					puts("NENHUM FUNCIONARIO ENCONTRADO!");
+					getch();
+					break;
+				}
+				editarFuncionario();
 				break;
-			case '4':				
-				zerarBackups();
+			case '4':			
+				zerarBackups();				
+				contador = lerArquivo(funcionario);
+				if(contador <= 0){
+					system("CLS");
+					puts("NENHUM FUNCIONARIO ENCONTRADO!");
+					getch();
+					break;
+				}
 				do{
 					deletarFuncionario("MENU");					
 					printf("\nNOVA OPERACAO?\n(s para sim) ");
 					fflush(stdin);
 					opcao = getche();
 				}while(opcao == 's' || opcao == 'S');
-				break;
-			case '5':
-				editarFuncionario();
 				break;
 		}
 	}while(1);

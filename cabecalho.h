@@ -4,7 +4,7 @@ Copyright: MIT License
 Author: Luiz Araujo - luizcarlos_bsb2006@hotmail.com
 Date: 19/12/2020
 Description: manipulação de arquivos, utilizando struct; com cadastro, atualização ,
-exclusÃ£o e consulta de funcionarios de uma forma que persista apÃ³s o fechamento do programa.
+exclusão e consulta de funcionários de uma forma que persista após o fechamento do programa.
 */
 
 #ifndef CABECALHO_H_INCLUDED
@@ -89,96 +89,7 @@ void editarFuncionario();
 // "INSERIR" - apaga funcionário específico, pelo código;
 // "RESTAURAR" - restaura o backup mais recente, se houver.
 void deletarFuncionario(char tipo[]);
-
 //=============================================================================
-
-//=============================================================================
-// ANALISAR
-
-void analisarCadastros(char tipo[]);
-//=============================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif // CABECALHO_H_INCLUDED
 

@@ -67,8 +67,6 @@ void zerarBackups(){
 	char arquivo_novo[32], arquivo_temp[32];
 	char s_indice[2];
     strcpy(arquivo_novo, "BKP\\dados_funcionarios.bin");
-//	strcpy(arquivo_anterior, "BKP\\dados_funcionarios.bin");
-
 	strcpy(arquivo_temp, "BKP\\dados_funcionarios");
 	itoa(MAX_BKP, s_indice, 10);
 	strcat(arquivo_temp, s_indice);		
@@ -78,7 +76,6 @@ void zerarBackups(){
 		remove(arquivo_novo);
 		fclose(bkp);
 		resposta = rename(arquivo_temp, arquivo_novo);
-
 		for(indice = 1; indice < MAX_BKP; indice++){
 			strcpy(arquivo_temp, "BKP\\dados_funcionarios");
 			itoa(indice, s_indice, 10);
@@ -116,7 +113,7 @@ void menuConsulta(){
 	do{
 		contador_entradas = lerArquivo(funcionario);
 		system("CLS");
-		puts("MENU DE CONSULTA FUNCIONARIOS");
+		puts("MENU DE CONSULTA");
 		puts("1 - LISTAR TODOS");
 		puts("2 - PESQUISAR POR CODIGO");
 		puts("3 - PESQUISAR POR NOME");
@@ -540,7 +537,7 @@ void cadastrarFuncionarios(){
 	struct dados_pessoais funcionario_gravar, funcionario[MAX_FUNC];
 	
 	system("CLS");
-	puts("CADASTRO DE FUNCIONARIOS");
+	puts("CADASTRAR DE FUNCIONARIO");
 	do{
 		contador_entradas = lerArquivo(funcionario);
 
@@ -585,7 +582,7 @@ void editarFuncionario(){
 
 	do{	
 		system("CLS");
-		puts("EDITAR CADASTRO DE FUNCIONARIOS");
+		puts("EDITAR CADASTRO");
 		
 		contador_entradas = lerArquivo(funcionario);
 		puts("TEM O CODIGO DO FUNCIONARIO?\n(s para sim)");
@@ -902,10 +899,10 @@ void deletarFuncionario(char tipo[]){
 	char continuar, opcao;
 	int contador_entradas, resultado, cod, controle_erros, contadorTemp, indice, posicao;
 	struct dados_pessoais c[MAX_FUNC], funcionario[MAX_FUNC];
-
+	
 	if(strcmp(tipo, "MENU") == 0){
 		system("CLS");
-		puts("APAGAR CADASTRO DE FUNCIONARIOS");
+		puts("APAGAR CADASTRO");
 		arq = fopen("dados_funcionarios.bin", "rb");
 		if(arq == NULL){
 			printf("\a\a\nNENHUM BANCO DE DADOS ENCONTRADO!");
@@ -1150,133 +1147,3 @@ void deletarFuncionario(char tipo[]){
 	}	// fim if restaurar
 }
 //=============================================================================
-
-
-//=============================================================================
-// ANALISAR
-
-void analisarCadastros(char tipo[]){
-	char opcao;	
-	int contador_erros;
-	
-	if(strcmp(tipo, "MENU") == 0){
-		system("CLS");
-		puts("MENU ANALISE DO CADASTRO");
-		puts("1 - ANALISE GERAL");
-		puts("2 - ANALISE DOS CODIGOS");
-		puts("3 - ANALISE DOS NOMES");
-		puts("4 - ANALISE DAS IDADES");
-		puts("5 - ANALISE DOS SEXOS");
-		puts("6 - ANALISE DOS CARGOS");
-		puts("7 - ANALISE DOS SALARIOS");
-		puts("0 - MENU PRINCIPAL");
-		printf("OPCAO: ");
-		fflush(stdin);
-		opcao = getche();
-		contador_erros = 1;
-		while((opcao > '7') || (isdigit(opcao) == 0)){
-			if(contador_erros > 3){
-				puts("\nOPCAO INVALIDA, INFORME UM NUMERO ENTRE 0 E 4!");
-				puts("1 - ANALISE GERAL");
-				puts("2 - ANALISE DOS CODIGOS");
-				puts("3 - ANALISE DOS NOMES");
-				puts("4 - ANALISE DAS IDADES");
-				puts("5 - ANALISE DOS SEXOS");
-				puts("6 - ANALISE DOS CARGOS");
-				puts("7 - ANALISE DOS SALARIOS");
-				puts("0 - MENU PRINCIPAL");
-			}
-			printf("\nOPCAO: ");
-			fflush(stdin);
-			opcao = getche();
-			contador_erros++;
-		}
-		system("CLS");
-	}
-
-	if(opcao == '1'){
-		analisarCadastros("GERAL");
-	}
-	if(opcao == '2'){
-		analisarCadastros("CODIGO");
-	}
-	if(opcao == '3'){
-		analisarCadastros("NOME");
-	}
-	if(opcao == '4'){
-		analisarCadastros("IDADE");
-	}
-	if(opcao == '5'){
-		analisarCadastros("SEXO");
-	}
-	if(opcao == '6'){
-		analisarCadastros("CARGO");
-	}
-	if(opcao == '7'){
-		analisarCadastros("SALARIO");
-	}
-	
-	if(strcmp(tipo, "GERAL") == 0){
-		analisarCadastros("CODIGO");
-		puts("\n");
-		analisarCadastros("NOME");
-		puts("\n");
-		analisarCadastros("IDADE");
-		puts("\n");
-		analisarCadastros("SEXO");
-		puts("\n");
-		analisarCadastros("CARGO");
-		puts("\n");
-		analisarCadastros("SALARIO");
-		puts("\n");
-	}	
-	if(strcmp(tipo, "CODIGO") == 0){
-		puts("ccccooooooooddddiiiiiiiiiiggggggggoooooooo");
-		
-		
-	}
-	if(strcmp(tipo, "NOME") == 0){
-		puts("NNNNNNNNOOOOOOOOOOOOOOMMMMMMMMEEEEEEEEE");
-		
-		
-	}
-	if(strcmp(tipo, "IDADE") == 0){
-		puts("iiiiiiiiiiidddddddddaaaaaaaadddddddeeeee");
-		
-		
-	}
-	if(strcmp(tipo, "SEXO") == 0){
-		puts("sssssssseeeeeeeexxxxxxxxoooooooooooo");
-		
-		
-	}
-	if(strcmp(tipo, "CARGO") == 0){
-		puts("cccccccccaaaaaarrrrgooooooooooo");
-		
-		
-	}
-	if(strcmp(tipo, "SALARIO") == 0){
-		puts("sssssssssssaaaaallllllarrrrriiiiiiiiiiiooooooooo");
-		
-		
-		
-	}
-}
-//=============================================================================
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
